@@ -10,15 +10,8 @@ The goal is to provide a reliable, actively maintained `@ajaybhatia/react-native
 need the animation, backdrop, swipe, and keyboard behavior of the original
 project across current React Native versions.
 
-### Announcements
-
-- 📣 We're looking for maintainers and contributors! See [#598](https://github.com/react-native-modal/react-native-modal/discussions/598)
-- 🙏 If you have a question, please [start a new discussion](https://github.com/react-native-modal/react-native-modal/discussions) instead of opening a new issue.
-
 [![npm version](https://img.shields.io/npm/v/%40ajaybhatia%2Freact-native-modal.svg)](https://www.npmjs.com/package/%40ajaybhatia%2Freact-native-modal)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-
-> If you're new to the React Native world, please notice that React Native itself offers a [<Modal /> component that works out-of-the-box](https://reactnative.dev/docs/modal).
 
 An enhanced, animated, customizable React Native modal for modern React Native applications.
 
