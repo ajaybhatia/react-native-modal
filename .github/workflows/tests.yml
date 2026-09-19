@@ -14,11 +14,13 @@ jobs:
     name: Install
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.4.2
       - uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-      - run: |
-          corepack enable
-          yarn --immutable
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - name: Build the project
-        run: yarn build
+        run: pnpm build

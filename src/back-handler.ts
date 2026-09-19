@@ -1,11 +1,19 @@
 import {
-  BackHandlerStatic,
   BackPressEventName,
   NativeEventSubscription,
   Platform,
 } from 'react-native';
 
-const noopBackHandler: BackHandlerStatic = {
+type BackHandlerApi = {
+  exitApp: () => void;
+  addEventListener: (
+    eventName: BackPressEventName,
+    handler: () => boolean | null | undefined,
+  ) => NativeEventSubscription;
+  removeEventListener: (eventName: BackPressEventName, handler: () => boolean | null | undefined) => void;
+};
+
+const noopBackHandler: BackHandlerApi = {
   exitApp() {},
   addEventListener(
     eventName: BackPressEventName,
@@ -16,5 +24,5 @@ const noopBackHandler: BackHandlerStatic = {
   removeEventListener: () => {},
 };
 
-export const BackHandler: BackHandlerStatic =
+export const BackHandler: BackHandlerApi =
   Platform.OS === 'web' ? noopBackHandler : require('react-native').BackHandler;

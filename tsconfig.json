@@ -7,11 +7,11 @@
     "jest.config.js"
   ],
   "compilerOptions": {
-    "lib": ["es5", "es6", "esnext.asynciterable"],
-    "allowSyntheticDefaultImports": false,
-    "esModuleInterop": false,
+    "lib": ["esnext", "dom"],
+    "rootDir": "./src",
     "jsx": "react",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "strict": true,
     "target": "esnext",
     "resolveJsonModule": true,

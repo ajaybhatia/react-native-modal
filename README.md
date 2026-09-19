@@ -1,18 +1,28 @@
+# rn-modal
+
+This project is a community-maintained continuation of the original
+[`react-native-modal`](https://github.com/react-native-modal/react-native-modal)
+package, maintained by Ajay Bhatia. It keeps the familiar API while updating
+the implementation for modern React Native releases, including versions where
+legacy APIs such as `InteractionManager` are no longer available.
+
+The goal is to provide a reliable, actively maintained `rn-modal` for developers who
+need the animation, backdrop, swipe, and keyboard behavior of the original
+project across current React Native versions.
+
 ### Announcements
 
 - 📣 We're looking for maintainers and contributors! See [#598](https://github.com/react-native-modal/react-native-modal/discussions/598)
 - 🙏 If you have a question, please [start a new discussion](https://github.com/react-native-modal/react-native-modal/discussions) instead of opening a new issue.
 
-# react-native-modal
-
-[![npm version](https://badge.fury.io/js/react-native-modal.svg)](https://badge.fury.io/js/react-native-modal)
+[![npm version](https://badge.fury.io/js/rn-modal.svg)](https://www.npmjs.com/package/rn-modal)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 > If you're new to the React Native world, please notice that React Native itself offers a [<Modal /> component that works out-of-the-box](https://reactnative.dev/docs/modal).
 
-An enhanced, animated, customizable React Native modal.
+An enhanced, animated, customizable React Native modal for modern React Native applications.
 
-The goal of `react-native-modal` is expanding the original React Native `<Modal>` component by adding animations, style customization options, and new features, while still providing a simple API.
+The goal of `rn-modal` is expanding the original React Native `<Modal>` component by adding animations, style customization options, and new features, while still providing a simple API.
 
 <p align="center">
 <img src="/.github/images/example-modal.gif" height="500" />
@@ -30,16 +40,62 @@ The goal of `react-native-modal` is expanding the original React Native `<Modal>
 
 ## Setup
 
-This library is available on npm, install it with: `npm i react-native-modal` or `yarn add react-native-modal`.
+This library is available on npm. The package requires React Native 0.86+,
+Reanimated 4.7+, and the matching Worklets runtime.
+
+### React Native Community CLI
+
+Create a current React Native application and install the package with its
+animation runtime:
+
+```sh
+npx @react-native-community/cli@latest init MyApp
+cd MyApp
+pnpm add rn-modal react-native-reanimated@4.7.0 react-native-worklets@0.13.0
+```
+
+Add the Worklets plugin last in `babel.config.js`:
+
+```js
+module.exports = {
+  presets: ['module:@react-native/babel-preset'],
+  plugins: ['react-native-worklets/plugin'],
+};
+```
+
+Then install iOS pods and rebuild the native application:
+
+```sh
+cd ios && pod install && cd ..
+pnpm android # or: pnpm ios
+```
+
+The Worklets plugin is required for React Native Community CLI projects and
+must remain the last Babel plugin.
+
+### Expo
+
+For a new Expo application:
+
+```sh
+pnpm create expo-app@latest my-app
+cd my-app
+pnpm expo install rn-modal react-native-reanimated react-native-worklets
+```
+
+Expo's Babel preset configures Reanimated automatically. No manual Babel plugin
+entry is needed. Use an Expo SDK whose React Native version is supported by
+Reanimated 4, and rebuild the development build after installing native
+dependencies.
 
 ## Usage
 
-Since `react-native-modal` is an extension of the [original React Native modal](https://reactnative.dev/docs/modal.html), it works in a similar fashion.
+Since `rn-modal` is an extension of the [original React Native modal](https://reactnative.dev/docs/modal.html), it works in a similar fashion.
 
-1.  Import `react-native-modal`:
+1.  Import `rn-modal`:
 
 ```javascript
-import Modal from 'react-native-modal';
+import Modal from 'rn-modal';
 ```
 
 2.  Create a `<Modal>` component and nest its content inside of it:
@@ -86,7 +142,7 @@ Inside the modal there is another button that, when pressed, sets `isModalVisibl
 ```javascript
 import React, {useState} from 'react';
 import {Button, Text, View} from 'react-native';
-import Modal from 'react-native-modal';
+import Modal from 'rn-modal';
 
 function ModalTester() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -113,7 +169,9 @@ function ModalTester() {
 export default ModalTester;
 ```
 
-For a more complex example take a look at the `/example` directory.
+For a more complex implementation, combine the modal with your app's existing
+navigation and state-management patterns; this package intentionally does not
+ship an example application.
 
 ## Available props
 
@@ -147,13 +205,13 @@ For a more complex example take a look at the `/example` directory.
 | `onSwipeCancel`                  | `func`               | `() => null`                     | Called when the `swipeThreshold` has not been reached                                                                                      |
 | `panResponderThreshold`          | `number`             | `4`                              | The threshold for when the panResponder should pick up swipe events                                                                        |
 | `scrollOffset`                   | `number`             | `0`                              | When > 0, disables swipe-to-close, in order to implement scrollable content                                                                |
-| `scrollOffsetMax`                | `number`             | `0`                              | Used to implement overscroll feel when content is scrollable. See `/example` directory                                                     |
-| `scrollTo`                       | `func`               | `null`                           | Used to implement scrollable modal. See `/example` directory for reference on how to use it                                                |
+| `scrollOffsetMax`                | `number`             | `0`                              | Used to implement overscroll feel when content is scrollable                                                                               |
+| `scrollTo`                       | `func`               | `null`                           | Used to implement a scrollable modal                                                                                                      |
 | `scrollHorizontal`               | `bool`               | `false`                          | Set to true if your scrollView is horizontal (for a correct scroll handling)                                                               |
 | `swipeThreshold`                 | `number`             | `100`                            | Swiping threshold that when reached calls `onSwipeComplete`                                                                                |
 | `swipeDirection`                 | `string` or `array`  | `null`                           | Defines the direction where the modal can be swiped. Can be 'up', 'down', 'left, or 'right', or a combination of them like `['up','down']` |
-| `useNativeDriver`                | `bool`               | `false`                          | Defines if animations should use native driver                                                                                             |
-| `useNativeDriverForBackdrop`     | `bool`               | `null`                           | Defines if animations for backdrop should use native driver (to avoid flashing on android)                                                 |
+| `useNativeDriver`                | `bool`               | `false`                          | Kept for API compatibility; animations are driven by Reanimated                                                                            |
+| `useNativeDriverForBackdrop`     | `bool`               | `null`                           | Kept for API compatibility; backdrop animations are driven by Reanimated                                                                   |
 | `hideModalContentWhileAnimating` | `bool`               | `false`                          | Enhances the performance by hiding the modal content until the animations complete                                                         |
 | `propagateSwipe`                 | `bool` or `func`     | `false`                          | Allows swipe events to propagate to children components (eg a ScrollView inside a modal)                                                   |
 | `style`                          | `any`                | `null`                           | Style applied to the modal                                                                                                                 |
@@ -162,8 +220,8 @@ For a more complex example take a look at the `/example` directory.
 
 ### The component is not working as expected
 
-Under the hood `react-native-modal` uses react-native original [Modal component](https://reactnative.dev/docs/modal).  
-Before reporting a bug, try swapping `react-native-modal` with react-native original Modal component and, if the issue persists, check if it has already been reported as a [react-native issue](https://github.com/facebook/react-native/issues).
+Under the hood `rn-modal` uses React Native's original [Modal component](https://reactnative.dev/docs/modal).
+Before reporting a bug, try swapping `rn-modal` with React Native's original Modal component and, if the issue persists, check if it has already been reported as a [React Native issue](https://github.com/facebook/react-native/issues).
 
 ### The backdrop is not completely filled/covered on some Android devices (Galaxy, for one)
 
@@ -225,12 +283,13 @@ The prop `onSwipeComplete` allows you to handle this situation (remember to set 
 </Modal>
 ```
 
-Note that when using `useNativeDriver={true}` the modal won't drag correctly. This is a [known issue](https://github.com/react-native-community/react-native-modal/issues/163#issuecomment-409760695).
+Swipe gestures are driven by Reanimated shared values, so they do not depend on
+the legacy `useNativeDriver` flag.
 
 ### The modal flashes in a weird way when animating
 
-Unfortunately this is a [known issue](https://github.com/react-native-community/react-native-modal/issues/92) that happens when `useNativeDriver=true` and must still be solved.  
-In the meanwhile as a workaround you can set the `hideModalContentWhileAnimating` prop to `true`: this seems to solve the issue.
+If the modal content flashes during a transition, set
+`hideModalContentWhileAnimating={true}` as a rendering workaround.
 Also, do not assign a `backgroundColor` property directly to the Modal. Prefer to set it on the child container.
 
 ### The modal background doesn't animate properly
@@ -246,7 +305,7 @@ Also, if you're providing the `deviceHeight` and `deviceWidth` props you'll have
 ### I can't show multiple modals one after another
 
 Unfortunately right now react-native doesn't allow multiple modals to be displayed at the same time.
-This means that, in `react-native-modal`, if you want to immediately show a new modal after closing one you must first make sure that the modal that your closing has completed its hiding animation by using the `onModalHide` prop.
+This means that, in `rn-modal`, if you want to immediately show a new modal after closing one you must first make sure that the modal that you are closing has completed its hiding animation by using the `onModalHide` prop.
 
 ### I can't show multiple modals at the same time
 
@@ -313,7 +372,51 @@ You can provide an event handler to the custom backdrop element to dismiss the m
 
 ## Available animations
 
-Take a look at [react-native-animatable](https://github.com/oblador/react-native-animatable) to see the dozens of animations available out-of-the-box. You can also pass in custom animation definitions and have them automatically register with react-native-animatable. For more information on creating custom animations, see the react-native-animatable [animation definition schema](https://github.com/oblador/react-native-animatable#animation-definition-schema).
+Animations are powered by `react-native-reanimated`, which is a peer dependency of
+`rn-modal`. Install it in your application and follow its installation steps,
+including `react-native-worklets` and the Babel plugin configuration required by
+Reanimated 4:
+
+```sh
+pnpm add react-native-reanimated@4.7.0 react-native-worklets@0.13.0
+```
+
+For React Native Community CLI applications, add
+`react-native-worklets/plugin` as the last Babel plugin, then rebuild the native
+application. This release targets React Native 0.86 through 0.88. Applications
+on older React Native versions must remain on the original package or use a
+separate compatibility release; this package intentionally follows the current
+native runtime rather than preserving obsolete native dependencies.
+
+The compatibility animation names currently supported are:
+
+- `slideInUp`, `slideInDown`, `slideInLeft`, `slideInRight`
+- `slideOutUp`, `slideOutDown`, `slideOutLeft`, `slideOutRight`
+- `fadeIn`, `fadeOut`
+- `zoomIn`, `zoomOut`, `bounceIn`, `bounceOut`
+- `flipInX`, `flipOutX`, `flipInY`, `flipOutY`
+- `rotateIn`, `rotateOut`, `rollIn`, `rollOut`
+
+Custom animations can be supplied with the same `{ from, to }` shape used by the
+original `react-native-modal` API. Numeric `translateX`, `translateY`, `opacity`,
+`scale`, `rotate`, `rotateX`, and `rotateY` values are supported. Unknown legacy
+`react-native-animatable` names are not silently remapped; use a custom animation
+definition for those effects so the result is explicit and predictable.
+
+## Migration from react-native-modal
+
+For an application already configured for Reanimated 4, the component usage is
+intended to be a one-line import change:
+
+```diff
+- import Modal from 'react-native-modal';
++ import Modal from 'rn-modal';
+```
+
+The existing modal props and lifecycle callbacks remain available. Install the
+runtime prerequisites from the setup section, remove `react-native-animatable`
+if it was only used by the original modal, and rebuild the native app after the
+dependency change.
 
 ## Alternatives
 
@@ -323,6 +426,6 @@ Take a look at [react-native-animatable](https://github.com/oblador/react-native
 
 ## Acknowledgements
 
-Thanks [@oblador](https://github.com/oblador) for react-native-animatable, [@brentvatne](https://github.com/brentvatne) for the npm namespace and to anyone who contributed to this library!
+Thanks [@brentvatne](https://github.com/brentvatne) for the npm namespace and to everyone who contributed to the original project and this continuation.
 
 Pull requests, feedbacks and suggestions are welcome!

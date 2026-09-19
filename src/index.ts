@@ -3,6 +3,7 @@ import {ReactNativeModal} from './modal';
 export {ModalProps, ReactNativeModal, OnSwipeCompleteParams} from './modal';
 export {
   AnimationEvent,
+  AnimationName,
   Animations,
   SupportedAnimation,
   Orientation,
