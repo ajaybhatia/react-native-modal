@@ -51,7 +51,7 @@ We prefix our commit messages with one of the following to signify the kind of c
 
 ## Reporting issues
 
-You can report issues on the [@ajaybhatia/react-native-modal bug tracker](https://github.com/ajaybhatia/rn-modal/issues). Please search for existing issues and follow the issue template when opening an issue.
+You can report issues on the [@ajaybhatia/react-native-modal bug tracker](https://github.com/ajaybhatia/react-native-modal/issues). Please search for existing issues and follow the issue template when opening an issue.
 
 ## License
 

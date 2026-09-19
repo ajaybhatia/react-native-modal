@@ -29,10 +29,10 @@
     "Ajay Bhatia"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/ajaybhatia/rn-modal",
+  "homepage": "https://github.com/ajaybhatia/react-native-modal",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ajaybhatia/rn-modal"
+    "url": "https://github.com/ajaybhatia/react-native-modal"
   },
   "devDependencies": {
     "@types/node": "26.6.2",
