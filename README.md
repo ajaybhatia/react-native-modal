@@ -1,4 +1,4 @@
-# rn-modal
+# @ajaybhatia/react-native-modal
 
 This project is a community-maintained continuation of the original
 [`react-native-modal`](https://github.com/react-native-modal/react-native-modal)
@@ -6,7 +6,7 @@ package, maintained by Ajay Bhatia. It keeps the familiar API while updating
 the implementation for modern React Native releases, including versions where
 legacy APIs such as `InteractionManager` are no longer available.
 
-The goal is to provide a reliable, actively maintained `rn-modal` for developers who
+The goal is to provide a reliable, actively maintained `@ajaybhatia/react-native-modal` for developers who
 need the animation, backdrop, swipe, and keyboard behavior of the original
 project across current React Native versions.
 
@@ -15,14 +15,14 @@ project across current React Native versions.
 - 📣 We're looking for maintainers and contributors! See [#598](https://github.com/react-native-modal/react-native-modal/discussions/598)
 - 🙏 If you have a question, please [start a new discussion](https://github.com/react-native-modal/react-native-modal/discussions) instead of opening a new issue.
 
-[![npm version](https://badge.fury.io/js/rn-modal.svg)](https://www.npmjs.com/package/rn-modal)
+[![npm version](https://img.shields.io/npm/v/%40ajaybhatia%2Freact-native-modal.svg)](https://www.npmjs.com/package/%40ajaybhatia%2Freact-native-modal)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 > If you're new to the React Native world, please notice that React Native itself offers a [<Modal /> component that works out-of-the-box](https://reactnative.dev/docs/modal).
 
 An enhanced, animated, customizable React Native modal for modern React Native applications.
 
-The goal of `rn-modal` is expanding the original React Native `<Modal>` component by adding animations, style customization options, and new features, while still providing a simple API.
+The goal of `@ajaybhatia/react-native-modal` is expanding the original React Native `<Modal>` component by adding animations, style customization options, and new features, while still providing a simple API.
 
 <p align="center">
 <img src="/.github/images/example-modal.gif" height="500" />
@@ -51,7 +51,7 @@ animation runtime:
 ```sh
 npx @react-native-community/cli@latest init MyApp
 cd MyApp
-pnpm add rn-modal react-native-reanimated@4.7.0 react-native-worklets@0.13.0
+pnpm add @ajaybhatia/react-native-modal react-native-reanimated@4.7.0 react-native-worklets@0.13.0
 ```
 
 Add the Worklets plugin last in `babel.config.js`:
@@ -80,7 +80,7 @@ For a new Expo application:
 ```sh
 pnpm create expo-app@latest my-app
 cd my-app
-pnpm expo install rn-modal react-native-reanimated react-native-worklets
+pnpm expo install @ajaybhatia/react-native-modal react-native-reanimated react-native-worklets
 ```
 
 Expo's Babel preset configures Reanimated automatically. No manual Babel plugin
@@ -90,12 +90,12 @@ dependencies.
 
 ## Usage
 
-Since `rn-modal` is an extension of the [original React Native modal](https://reactnative.dev/docs/modal.html), it works in a similar fashion.
+Since `@ajaybhatia/react-native-modal` is an extension of the [original React Native modal](https://reactnative.dev/docs/modal.html), it works in a similar fashion.
 
-1.  Import `rn-modal`:
+1.  Import `@ajaybhatia/react-native-modal`:
 
 ```javascript
-import Modal from 'rn-modal';
+import Modal from '@ajaybhatia/react-native-modal';
 ```
 
 2.  Create a `<Modal>` component and nest its content inside of it:
@@ -142,7 +142,7 @@ Inside the modal there is another button that, when pressed, sets `isModalVisibl
 ```javascript
 import React, {useState} from 'react';
 import {Button, Text, View} from 'react-native';
-import Modal from 'rn-modal';
+import Modal from '@ajaybhatia/react-native-modal';
 
 function ModalTester() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -220,8 +220,8 @@ ship an example application.
 
 ### The component is not working as expected
 
-Under the hood `rn-modal` uses React Native's original [Modal component](https://reactnative.dev/docs/modal).
-Before reporting a bug, try swapping `rn-modal` with React Native's original Modal component and, if the issue persists, check if it has already been reported as a [React Native issue](https://github.com/facebook/react-native/issues).
+Under the hood `@ajaybhatia/react-native-modal` uses React Native's original [Modal component](https://reactnative.dev/docs/modal).
+Before reporting a bug, try swapping `@ajaybhatia/react-native-modal` with React Native's original Modal component and, if the issue persists, check if it has already been reported as a [React Native issue](https://github.com/facebook/react-native/issues).
 
 ### The backdrop is not completely filled/covered on some Android devices (Galaxy, for one)
 
@@ -305,7 +305,7 @@ Also, if you're providing the `deviceHeight` and `deviceWidth` props you'll have
 ### I can't show multiple modals one after another
 
 Unfortunately right now react-native doesn't allow multiple modals to be displayed at the same time.
-This means that, in `rn-modal`, if you want to immediately show a new modal after closing one you must first make sure that the modal that you are closing has completed its hiding animation by using the `onModalHide` prop.
+This means that, in `@ajaybhatia/react-native-modal`, if you want to immediately show a new modal after closing one you must first make sure that the modal that you are closing has completed its hiding animation by using the `onModalHide` prop.
 
 ### I can't show multiple modals at the same time
 
@@ -373,7 +373,7 @@ You can provide an event handler to the custom backdrop element to dismiss the m
 ## Available animations
 
 Animations are powered by `react-native-reanimated`, which is a peer dependency of
-`rn-modal`. Install it in your application and follow its installation steps,
+`@ajaybhatia/react-native-modal`. Install it in your application and follow its installation steps,
 including `react-native-worklets` and the Babel plugin configuration required by
 Reanimated 4:
 
@@ -410,7 +410,7 @@ intended to be a one-line import change:
 
 ```diff
 - import Modal from 'react-native-modal';
-+ import Modal from 'rn-modal';
++ import Modal from '@ajaybhatia/react-native-modal';
 ```
 
 The existing modal props and lifecycle callbacks remain available. Install the

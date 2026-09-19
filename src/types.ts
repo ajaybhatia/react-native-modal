@@ -3,7 +3,7 @@ import { NativeSyntheticEvent, NativeTouchEvent } from 'react-native';
 export type OrNull<T> = null | T;
 
 /**
- * Built-in animation names supported by rn-modal.
+ * Built-in animation names supported by @ajaybhatia/react-native-modal.
  *
  * The `string & {}` fallback intentionally keeps arbitrary names assignable
  * for compatibility with existing react-native-modal code while preserving

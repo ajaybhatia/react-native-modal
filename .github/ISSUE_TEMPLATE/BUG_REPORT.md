@@ -5,8 +5,8 @@ labels: "bug"
 ---
 
 <!-- NOTE:
-- Under the hood rn-modal uses React Native's built-in Modal.
-- Before reporting a bug, try swapping rn-modal with React Native's built-in Modal to check if the problem persists. If it does please report the issue in the React Native repo instead.
+- Under the hood @ajaybhatia/react-native-modal uses React Native's built-in Modal.
+- Before reporting a bug, try swapping @ajaybhatia/react-native-modal with React Native's built-in Modal to check if the problem persists. If it does please report the issue in the React Native repo instead.
 - Please notice that WE WON'T SUPPORT ISSUE IF YOU HAVEN'T TRIED USING THE BUILT-IN MODAL COMPONENT ALONE. 
 - For QUESTIONS and FEEDBACK, please use the repository's Discussions section.
 -->
@@ -25,7 +25,7 @@ labels: "bug"
 
 - Android:
 - iOS:
-- rn-modal:
+- @ajaybhatia/react-native-modal:
 - react-native:
 - react:
 

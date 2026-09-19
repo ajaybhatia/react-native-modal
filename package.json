@@ -1,5 +1,5 @@
 {
-  "name": "rn-modal",
+  "name": "@ajaybhatia/react-native-modal",
   "version": "1.0.0",
   "description": "A maintained React Native modal continuation compatible with modern React Native versions",
   "main": "dist/index.js",
